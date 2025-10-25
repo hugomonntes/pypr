@@ -69,6 +69,6 @@ def calculateListSum():
         sum_total += list[i - 1] + list2[i - 1]
     print(list)
     print(list2)
-    print(f"Suma total de los elementos de ambas listas: {sum_total}")
+    print(f"Suma total: {sum_total}")
     
 calculateListSum()
