@@ -60,8 +60,15 @@ def calculateRangeSum():
 def calculateListSum():
     list_size = int(getData())
     import random
-    list = [random.randint(1, 100)]
-    for i in range(1, list_size):
-        list.append(random.randint(1, 200))
+    list = []
+    list2 = []
+    sum_total = 0
+    for i in range(1, list_size + 1):
+        list.append(random.randint(1, 20))
+        list2.append(random.randint(1, 20))
+        sum_total += list[i - 1] + list2[i - 1]
     print(list)
+    print(list2)
+    print(f"Suma total de los elementos de ambas listas: {sum_total}")
+    
 calculateListSum()
