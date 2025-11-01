@@ -7,14 +7,14 @@ def count_words():
     for word in words:
         wordFormated = word.strip(string.punctuation) #Quito los puntos y simbolos en caso de que esten pegados a la palabra
         if wordFormated.isalpha():
-            checkedWords.append(wordFormated)
-            
+            checkedWords.append(wordFormated.capitalize)
+    
+    wordPerAppearances = {}
     for word in checkedWords:
-        count = 0
-        for w in checkedWords:
-            if word == w:
-                count += 1
-        print(word, "→", count)
-        
+        if word in wordPerAppearances:
+            wordPerAppearances[word] += 1
+        else:
+            wordPerAppearances[word] = 1
+    print(wordPerAppearances)    
     
 count_words()
