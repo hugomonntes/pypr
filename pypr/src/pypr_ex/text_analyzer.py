@@ -14,6 +14,6 @@ def count_words():
             wordPerAppearances[word] += 1
         else:
             wordPerAppearances[word] = 1
-    print(wordPerAppearances)    
+    print(wordPerAppearances)
     
 count_words()
