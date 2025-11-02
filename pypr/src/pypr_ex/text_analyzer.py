@@ -1,5 +1,5 @@
 import string;
-def count_words():
+def contar_palabras():
     text = "El gato negro y el gato blanco juegan. El gato negro es rápido."
     words = text.split(" ")
     checkedWords = []
@@ -14,6 +14,32 @@ def count_words():
             wordPerAppearances[word] += 1
         else:
             wordPerAppearances[word] = 1
-    print(wordPerAppearances)
+    return wordPerAppearances
     
-count_words()
+contar_palabras()
+
+def estadisticas_texto(text: string):
+    return (len(text), )
+
+def calcular_logitudMedia_palabras(words: dict):
+    palabras = list(words.keys())
+    for palabra in palabras:
+        tamaños = [len(palabra)]
+    print(tamaños)
+
+calcular_logitudMedia_palabras(contar_palabras())
+
+def main():
+    fileName = input("Introduce el nombre del archivo: ")
+    print(contar_palabras())
+    
+# b) Función estadisticas_texto: Recibe un texto y devuelve en una tupla:
+# • Número total de palabras.
+# • Longitud media de las palabras.
+# • Palabra más larga.
+# • Palabra más frecuente.
+
+# c) Programa principal: Pide el nombre de un archivo de texto al usuario y muestra
+# primero el diccionario que devuelve contar_palabras y luego las estadísticas que
+# devuelva estadisticas_texto. Presenta todos los datos de forma adecuada y bien
+# alineados. 
