@@ -1,6 +1,5 @@
 import string
 
-
 def getPositiveNumber():
     while True:
         try:
