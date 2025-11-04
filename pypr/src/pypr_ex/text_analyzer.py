@@ -1,10 +1,12 @@
-import string;
+import string
+
 def contar_palabras():
     text = "El gato negro y el gato blanco juegan. El gato negro es rápido."
-    words = text.split(" ")
+    words = text.split()
     checkedWords = []
+
     for word in words:
-        wordFormated = word.strip(string.punctuation) #Quito los puntos y simbolos en caso de que esten pegados a la palabra y lo pongo en minuscula
+        wordFormated = word.strip(string.punctuation).lower()
         if wordFormated.isalpha():
             checkedWords.append(wordFormated)
     
@@ -15,33 +17,34 @@ def contar_palabras():
         else:
             wordPerAppearances[word] = 1
     return wordPerAppearances
-    
-contar_palabras()
 
-def estadisticas_texto(text: string):
+def calcular_longitudMedia_palabras(words: dict):
+    longitudes = []
+    for palabra in words.keys():
+        longitudes.append(len(palabra))
+    
+    suma = 0
+    for longitud in longitudes:
+        suma += longitud
+    
+    return suma / len(longitudes)
+
+def palabra_mas_larga(diccionario: dict):
+    return max(diccionario.keys(), key=len)
+
+def estadisticas_texto(text: str):
     diccionario = contar_palabras()
-    return (len(text), calcular_logitudMedia_palabras(diccionario), max(len(diccionario.keys())),max(diccionario.values(), key=diccionario.get))
-
-def palabra_mas_larga(dict: dict):
-    palabras = list(dict)
-
-def calcular_logitudMedia_palabras(words: dict):
-    palabras = list(words.keys())
-    for palabra in palabras:
-        tamaños = [len(palabra)]
+    total_palabras = len(diccionario)
+    longitud_media = calcular_longitudMedia_palabras(diccionario)
+    palabra_larga = palabra_mas_larga(diccionario)
+    palabra_frecuente = max(diccionario, key=diccionario.get)
     
-    sumatorio = 0
-    for tamaño in tamaños:
-        sumatorio += tamaño
-    
-    return sumatorio / len(tamaños)
-
-calcular_logitudMedia_palabras(contar_palabras())
+    return (total_palabras, longitud_media, palabra_larga, palabra_frecuente)
 
 def main():
-    fileName = input("Introduce el nombre del archivo: ")
-    print(contar_palabras())
-    
+    print(estadisticas_texto("El gato negro y el gato blanco juegan. El gato negro es rápido."))
+
+main()
 # b) Función estadisticas_texto: Recibe un texto y devuelve en una tupla:
 # • Número total de palabras.
 # • Longitud media de las palabras.
