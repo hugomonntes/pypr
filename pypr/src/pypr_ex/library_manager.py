@@ -24,3 +24,54 @@ def isValidIsbn(isbn: str):
 
 print(isValidIsbn("987_987_98_8X"))
 
+def pide_libro():
+    titulo = input("Introduce el titulo del libro: ")
+    autor = input("Introduce el autor del libro: ")
+    while True:
+        isbn = input("Introduce el ISBN del libro: ")
+        if isValidIsbn(isbn):
+            break
+        else:
+            print("ISBN no válido. Inténtalo de nuevo.")
+    num_paginas = getPositiveNumber()
+    return (titulo, autor, isbn, num_paginas)
+
+def main():
+    libros = []
+    while True:
+        print("Menú:")
+        print("1. Añadir Libro")
+        print("2. Mostrar lista")
+        print("3. Eliminar elemento de la lista")
+        print("4. Salir")
+        opcion = input("Elige una opción: ")
+        
+        if opcion == "1":
+            libro = pide_libro()
+            libros.append(libro)
+        elif opcion == "2":
+            print(f"{'Título':<30} {'Autor':<20} {'ISBN':<15} {'Páginas':<10}")
+            for libro in libros:
+                print(f"{libro[0]:<30} {libro[1]:<20} {libro[2]:<15} {libro[3]:<10}")
+        elif opcion == "3":
+            titulo_eliminar = input("Introduce el título del libro a eliminar: ")
+            libros = [libro for libro in libros if libro[0] != titulo_eliminar]
+        elif opcion == "4":
+            with open("libros.txt", "w") as f:
+                for libro in libros:
+                    f.write(f"{libro[0]},{libro[1]},{libro[2]},{libro[3]}\n")
+            break
+        else:
+            print("Opción no válida. Inténtalo de nuevo.")
+
+main()
+
+# d) En el programa principal crea una lista vacía y luego plantea un menú con las
+# opciones:
+# Añadir Libro. Pide los datos de un libro y los añade a la lista.
+# Mostrar lista: Muestra la lista completa de elementos. Cada campo de un
+# libro en una columna distinta. Todo bien alineado.
+# Eliminar elemento de la lista. Se elimina por título. Si hay varios con el
+# mismo título se eliminan todos.
+#  Debe tener persistencia de datos, al final del programa (solo al finalizarlo) guarda
+# los datos en un archivo y los lee al volver a ejecutarse.
