@@ -19,13 +19,22 @@ def contar_palabras():
 contar_palabras()
 
 def estadisticas_texto(text: string):
-    return (len(text), )
+    diccionario = contar_palabras()
+    return (len(text), calcular_logitudMedia_palabras(diccionario), max(len(diccionario.keys())),max(diccionario.values(), key=diccionario.get))
+
+def palabra_mas_larga(dict: dict):
+    palabras = list(dict)
 
 def calcular_logitudMedia_palabras(words: dict):
     palabras = list(words.keys())
     for palabra in palabras:
         tamaños = [len(palabra)]
-    print(tamaños)
+    
+    sumatorio = 0
+    for tamaño in tamaños:
+        sumatorio += tamaño
+    
+    return sumatorio / len(tamaños)
 
 calcular_logitudMedia_palabras(contar_palabras())
 
