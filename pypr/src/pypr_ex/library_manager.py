@@ -14,12 +14,10 @@ def getPositiveNumber():
 
 def isValidIsbn(isbn: str):
     isbn = isbn.replace(" ", "").replace("_", "")
-    if len(isbn) != 10 or not isbn[:9].isdigit():
+    if len(isbn) != 10 or not isbn[0:9].isdigit():
         return False
-    
     if isbn[-1].isdigit() or isbn[-1] == "X":
         return True
-
     return False
 
 print(isValidIsbn("987_987_98_8X"))
@@ -50,16 +48,17 @@ def main():
             libro = pide_libro()
             libros.append(libro)
         elif opcion == "2":
-            print(f"{'Título':<30} {'Autor':<20} {'ISBN':<15} {'Páginas':<10}")
+            print(f"{'Título'} {'Autor'} {'ISBN'} {'Páginas'}")
             for libro in libros:
-                print(f"{libro[0]:<30} {libro[1]:<20} {libro[2]:<15} {libro[3]:<10}")
+                print(f"{libro[0]} {libro[1]} {libro[2]} {libro[3]}")
         elif opcion == "3":
             titulo_eliminar = input("Introduce el título del libro a eliminar: ")
-            libros = [libro for libro in libros if libro[0] != titulo_eliminar]
-        elif opcion == "4":
-            with open("libros.txt", "w") as f:
-                for libro in libros:
-                    f.write(f"{libro[0]},{libro[1]},{libro[2]},{libro[3]}\n")
+            for libro in libros:
+                if libro == titulo_eliminar:
+                    libros.remove(libro)
+        elif opcion == "4": # TODO falta acabar con archivo
+            for libro in libros:
+                print()
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
