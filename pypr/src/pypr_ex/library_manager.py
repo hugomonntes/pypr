@@ -64,7 +64,7 @@ def main():
             for libro in libros:
                 if libro[0] == titulo_eliminar:
                     libros.remove(libro)
-        elif opcion == "4": # TODO falta acabar con archivo
+        elif opcion == "4":
             with open("GuardaDatos.txt","w",True) as archivo_guarda_datos:
                 for libro in libros:
                     archivo_guarda_datos.write(f"{libro[0]}, {libro[1]}, {libro[2]}, {str(libro[3])}\n")
