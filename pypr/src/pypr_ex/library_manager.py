@@ -54,7 +54,7 @@ def main():
         elif opcion == "3":
             titulo_eliminar = input("Introduce el título del libro a eliminar: ")
             for libro in libros:
-                if libro == titulo_eliminar:
+                if libro[0] == titulo_eliminar:
                     libros.remove(libro)
         elif opcion == "4": # TODO falta acabar con archivo
             break
