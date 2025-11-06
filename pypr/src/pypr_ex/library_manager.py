@@ -20,8 +20,6 @@ def isValidIsbn(isbn: str):
         return True
     return False
 
-print(isValidIsbn("987_987_98_8X"))
-
 def pide_libro():
     titulo = input("Introduce el titulo del libro: ")
     autor = input("Introduce el autor del libro: ")
@@ -36,6 +34,16 @@ def pide_libro():
 
 def main():
     libros = []
+    try:
+        with open("GuardaDatos.txt","r") as archivo_cargar_datos:
+            for linea in archivo_cargar_datos:
+                linea = linea.strip()
+                datos = linea.split(",")
+                if (len(datos) == 4):
+                    libros.append((datos[0],datos[1],datos[2],int(datos[3])))
+    except IOError:
+        print("Error al abrir el archivo.")
+        
     while True:
         print("Menú:")
         print("1. Añadir Libro")
@@ -48,15 +56,20 @@ def main():
             libro = pide_libro()
             libros.append(libro)
         elif opcion == "2":
-            print(f"{'Título'} {'Autor'} {'ISBN'} {'Páginas'}")
+            print(f"{'Título':<20} {'Autor':<20} {'ISBN':<15} {'Páginas':<7}")
             for libro in libros:
-                print(f"{libro[0]} {libro[1]} {libro[2]} {libro[3]}")
+                print(f"{libro[0]:<20} {libro[1]:<20} {libro[2]:<20} {libro[3]:<20}")
         elif opcion == "3":
             titulo_eliminar = input("Introduce el título del libro a eliminar: ")
             for libro in libros:
                 if libro[0] == titulo_eliminar:
                     libros.remove(libro)
         elif opcion == "4": # TODO falta acabar con archivo
+            with open("GuardaDatos.txt","w",True) as archivo_guarda_datos:
+                for libro in libros:
+                    archivo_guarda_datos.write(f"{libro[0]}, {libro[1]}, {libro[2]}, {str(libro[3])}\n")
+            print("Datos guardados")
+            print("Saliendo del programa...")
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
