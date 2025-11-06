@@ -57,8 +57,6 @@ def main():
                 if libro == titulo_eliminar:
                     libros.remove(libro)
         elif opcion == "4": # TODO falta acabar con archivo
-            for libro in libros:
-                print()
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
