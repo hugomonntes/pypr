@@ -1,8 +1,10 @@
+import random
+
 def getData():
-     while True:
+    while True:
         try:
             return float(input("Introduce un número: "))
-        except Exception:
+        except ValueError:
             print("Error! introduce un número válido.")
 
 def showData():
@@ -17,26 +19,19 @@ def calculateDivision():
     if num2 == 0 or num1 == 0:
         print("Error! División por cero no está permitida.")
         return
-    print(f"Cociente: {num1 // num2:.4f}") if isHigher(num1, num2) else print(f"Cociente: {num2 // num1:.4f}")
-    print(f"Resto: {num1 % num2:.4f}") if isHigher(num1, num2) else print(f"Resto: {num2 % num1:.4f}")
-    print(f"Division: {num1 / num2:.4f}") if isHigher(num1, num2) else print(f"Cociente: {num2 / num1:.4f}")
-    
-# calculateDivision()
-
-# Potencia: Pide una base y un exponente, este último será entero.
-# Muestra la potencia resultado usando 2 decimales con cadena
-# interpolada (f-string).
+    if isHigher(num1, num2):
+        print(f"Cociente (entero): {num1 // num2:.4f}")
+        print(f"Resto: {num1 % num2:.4f}")
+        print(f"División (decimal): {num1 / num2:.4f}")
+    else:
+        print(f"Cociente (entero): {num2 // num1:.4f}")
+        print(f"Resto: {num2 % num1:.4f}")
+        print(f"División (decimal): {num2 / num1:.4f}")
 
 def calculatePow():
     base = getData()
     exponent = int(getData())
     print(f"Potencia: {base ** exponent:.2f}")
-    
-# calculatePow()
-
-# Rango: Pide dos números enteros al usuario. Indica cual es el menor y
-# cual el mayor. Luego calcula y muestra la suma de todos los números
-# entre dichos números (incluyendo ambos números en la suma).
 
 def calculateRangeSum():
     num1 = int(getData())
@@ -46,29 +41,45 @@ def calculateRangeSum():
     print(f"El menor es: {lower}")
     print(f"El mayor es: {higher}")
     total_sum = 0
-    for i in range(lower, higher + 1): # Sumo porque el final no esta incluido en el rango
+    for i in range(lower, higher + 1):
         total_sum += i
     print(f"Suma de todos los números entre {lower} y {higher}: {total_sum}")
-    
-# calculateRangeSum()
-
-# Listas: Pide al usuario un tamaño para la lista. Crea dos listas de
-# números aleatorios (en el rango que tu quieras) del tamaño indicado
-# por el usuario. Finalmente muestra las dos listas y una tercera que
-# incluya la suma elemento a elemento de ambas listas.
 
 def calculateListSum():
     list_size = int(getData())
-    import random
-    list = []
+    list1 = []
     list2 = []
-    sum_total = 0
-    for i in range(1, list_size + 1):
-        list.append(random.randint(1, 20))
+    list_sum = []
+    for i in range(list_size):
+        list1.append(random.randint(1, 20))
         list2.append(random.randint(1, 20))
-        sum_total += list[i - 1] + list2[i - 1]
-    print(list)
-    print(list2)
-    print(f"Suma total: {sum_total}")
-    
-calculateListSum()
+        list_sum.append(list1[i] + list2[i])
+    print("Lista 1:", list1)
+    print("Lista 2:", list2)
+    print("Suma elemento a elemento:", list_sum)
+
+
+def menu():
+    while True:
+        print("1. Divisiones")
+        print("2. Potencia")
+        print("3. Rango")
+        print("4. Listas")
+        print("5. Salir")
+        opcion = input("Elige una opción: ")
+
+        if opcion == "1":
+            calculateDivision()
+        elif opcion == "2":
+            calculatePow()
+        elif opcion == "3":
+            calculateRangeSum()
+        elif opcion == "4":
+            calculateListSum()
+        elif opcion == "5":
+            print("Saliendo...")
+            break
+        else:
+            print("Opción no válida")
+
+menu()
