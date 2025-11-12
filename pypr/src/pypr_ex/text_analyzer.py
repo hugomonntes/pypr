@@ -11,10 +11,7 @@ def contar_palabras(text):
     
     wordPerAppearances = {}
     for word in checkedWords:
-        if word in wordPerAppearances:
-            wordPerAppearances[word] += 1
-        else:
-            wordPerAppearances[word] = 1
+        wordPerAppearances[word] = (wordPerAppearances[word] | 0) + 1 
     return wordPerAppearances
 
 def calcular_longitudMedia_palabras(words: dict):
