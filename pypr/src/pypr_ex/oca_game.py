@@ -3,8 +3,7 @@ import random
 # # # espiral, el tablero se puede representar como un array unidimensional con reglas
 # # # en ciertas casillas. Además puedes hacer que la CPU juegue, pues sería una IA muy
 # # # sencilla, con lo que puedes plantear uno o dos jugadores. Puedes usar el ejemplo
-# # # dado en teoría como base inicial para el juego.
-
+# # # dado en teoría como base inicial para el juego.º
 # # Las casillas más importantes en el juego de la oca son
 # # las ocas, que permiten avanzar y tirar de nuevo. 
 # son los puentes (6 y 12), te mueven entre ellos
@@ -20,26 +19,48 @@ def initTablero(casillas: list):
         casillas.append(i)
     return casillas    
 
+def definirJugador(numeroCasilla):
+    return numeroCasilla + tirarDado()
+
 def tirarDado():
     return random.randint(1, 7)
 
 def caerEnPuente(numeroCasilla):
     return 12 if numeroCasilla == 6 else 6
 
-def caerEnPozo(numeroCasilla, casillaOtroJugador):
-    if numeroCasilla == 31:
-        while (casillaOtroJugador != 31):
-            turno = False
-            casillaOtroJugador += tirarDado()
-        turno = True 
+def caerEnPozo(casillaOtroJugador):
+    while (casillaOtroJugador != 31):
+        turno = False
+        casillaOtroJugador += tirarDado()
+    turno = True 
     return turno
 
-def caerEnCalavera(numeroCasilla):
-    if numeroCasilla == 58:
-        return 0
-        
-def jugador(numeroCasilla, turno):
-    if turno:
-        numeroCasilla += tirarDado()
-    return numeroCasilla
+def caerEnCalavera():
+    return 1
 
+def caerEnOca(numeroCasilla):
+    if numeroCasilla == 60:
+        return 63
+    numeroCasilla += 5
+    numeroCasilla += tirarDado()
+    return numeroCasilla
+    
+def caerEnLaberinto():
+    return 30
+
+def pintarAvanzarEnTablero(casillas,numeroCasilla):
+    casillas[numeroCasilla] = "🔵"
+    
+#MAIN
+
+initTablero(casillas = [])
+juegaElUsuario = True
+fin = False
+while (not fin):
+    if (juegaElUsuario):
+        jugador1 = definirJugador(casilla)
+    else:
+        jugador2 = definirJugador(casilla)
+    
+    if (jugador1 == 63 or jugador2 == 63):
+        fin = True
