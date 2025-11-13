@@ -37,25 +37,12 @@ def compara(enteros1: list, enteros2: list):
 
 # MAIN
 def main(): # KeyboardException
-    flag = True
-    listaFinal = []
-    contador = 0
-    while flag:
-        usuario = input("Dime 6 numeros, entre el 1 y el 49, ambos son válidos, separalos por ',': ")
-        numerosSplited = usuario.split(",")
-        if len(numerosSplited) == 6:
-            for i in range(len(numerosSplited)):
-                if numerosSplited[i].isdigit() and (int(numerosSplited[i]) > 0 and int(numerosSplited[i])<50):
-                    listaFinal.append(int(numerosSplited[i]))
-            if len(listaFinal)==6:
-                flag = False
-        else:
-            print ("METE 6 PUTOS NÚMEROS SUBNORMAL")
-    for i in range(0, 1000000):
-        nuevaLista = []
-        rellenaCol(nuevaLista)
-        if compara(nuevaLista, listaFinal) == 6:
-            print ("SOY MILLONARIO PERRAS " + i + " VECES")
+    usuario = input("Dime 6 numeros, entre el 1 y el 49, ambos son válidos, separalos por ',': ")
+    numerosSplited = usuario.split(",")
+    if len(numerosSplited) == 6:
+        for i in range(len(numerosSplited)):
+            if numerosSplited[i].isdigit() and (int(numerosSplited[i]) > 0 and int(numerosSplited[i])<50):
+                
 
 
 main()
