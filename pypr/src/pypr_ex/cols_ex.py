@@ -37,14 +37,15 @@ def compara(enteros1: list, enteros2: list):
 
 # MAIN
 def main(): # KeyboardException
-    usuario = input("Dime 6 numeros, entre el 1 y el 49, ambos son válidos, separalos por ',': ")
+    try:
+        usuario = int(input("Dime 6 numeros, entre el 1 y el 49, ambos son válidos, separalos por ',': "))
+    except ValueError:
+        print("introduce un numero")
     numerosSplited = usuario.split(",")
     if len(numerosSplited) == 6:
         for i in range(len(numerosSplited)):
             if numerosSplited[i].isdigit() and (int(numerosSplited[i]) > 0 and int(numerosSplited[i])<50):
                 
-
-
 main()
 
 
