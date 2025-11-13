@@ -26,10 +26,14 @@ def tirarDado():
 def caerEnPuente(numeroCasilla):
     return 12 if numeroCasilla == 6 else 6
 
-def caerEnPozo(numeroCasilla):
+def caerEnPozo(numeroCasilla, casillaOtroJugador):
     if numeroCasilla == 31:
-        while (otrapersonacasilla != 31)
- 
+        while (casillaOtroJugador != 31):
+            turno = False
+            casillaOtroJugador += tirarDado()
+        turno = True 
+    return turno
+
 def caerEnCalavera(numeroCasilla):
     if numeroCasilla == 58:
         return 0
@@ -38,3 +42,4 @@ def jugador(numeroCasilla, turno):
     if turno:
         numeroCasilla += tirarDado()
     return numeroCasilla
+
