@@ -3,16 +3,9 @@ import random
 # # # espiral, el tablero se puede representar como un array unidimensional con reglas
 # # # en ciertas casillas. Además puedes hacer que la CPU juegue, pues sería una IA muy
 # # # sencilla, con lo que puedes plantear uno o dos jugadores. Puedes usar el ejemplo
-# # # dado en teoría como base inicial para el juego.º
-# # Las casillas más importantes en el juego de la oca son
-# # las ocas, que permiten avanzar y tirar de nuevo. 
-# son los puentes (6 y 12), te mueven entre ellos
+# # # dado en teoría como base inicial para el juego.º 
 # la posada (19), donde pierdes un turno; 
-# el pozo (31), donde quedas atrapado hasta que otro jugador cae en él; 
-# el laberinto (42), que te hace retroceder a la casilla 30; 
 # la cárcel (56), donde pierdes turnos; 
-# los dados (26 y 53), que te hacen avanzar el número que indiquen; 
-# y la calavera o la muerte (58), que te devuelve al inicio.
 
 def initTablero(casillas: list):    
     for i in range (1,64):
@@ -48,12 +41,34 @@ def caerEnOca(numeroCasilla):
 def caerEnLaberinto():
     return 30
 
+def caerEnDados(numeroCasilla):
+    return 53 if numeroCasilla == 26 else 26
+
+    contador= 0
+def caerEnCarcel(contador):
+    while (contador<3):
+        turno=False
+        contador=contador+1
+        break
+    if contador==3:
+        turno= True
+
+def caerEnPosada(contador):
+    contador = 0
+    while (contador<1):
+        turno=False
+        contador=contador+1
+        break
+    if contador==1:
+        turno= True
+
 def pintarAvanzarEnTablero(casillas,numeroCasilla):
     casillas[numeroCasilla] = "🔵"
     
 #MAIN
 
 initTablero(casillas = [])
+casilla = 1
 juegaElUsuario = True
 fin = False
 while (not fin):
@@ -61,6 +76,8 @@ while (not fin):
         jugador1 = definirJugador(casilla)
     else:
         jugador2 = definirJugador(casilla)
-    
+
+
+    #Acaba el juego
     if (jugador1 == 63 or jugador2 == 63):
         fin = True
